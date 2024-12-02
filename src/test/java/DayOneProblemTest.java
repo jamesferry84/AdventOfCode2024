@@ -8,8 +8,6 @@ public class DayOneProblemTest {
 
     @Test
     public void testDayOneSolutions() {
-        System.out.println("testing works");
-
         //"3   4"
         //"4   3"
         //"2   5"
@@ -59,16 +57,13 @@ public class DayOneProblemTest {
         System.out.println("sum is: " + sum);
 
         for (int i = 0; i < listOne.size(); i++) {
-            if (similarityMap.containsKey(listTwo.get(i)) == true) {
-                long key = listTwo.get(i);
-                long numTimes = similarityMap.get(listTwo.get(i));
+            if (similarityMap.containsKey(listTwo.get(i))) {
                 long value = similarityMap.get(listTwo.get(i));
                 long updatedTimes = value + 1;
                 similarityMap.put(listTwo.get(i), updatedTimes);
             }
         }
 
-        int total = 0;
 
         for (Map.Entry<Long,Long> entry : similarityMap.entrySet()) {
             Long key = entry.getKey();
@@ -76,12 +71,12 @@ public class DayOneProblemTest {
             similarityMap.put(key, key*value);
         }
         Map<Long,Long> timesFoundInListOne = new HashMap<>();
-        for (int i = 0; i < listOne.size(); i++) {
-            if (timesFoundInListOne.containsKey(listOne.get(i))) {
-                long value = timesFoundInListOne.get(listOne.get(i));
-                timesFoundInListOne.put(listOne.get(i), value + 1);
+        for (Long item : listOne) {
+            if (timesFoundInListOne.containsKey(item)) {
+                long value = timesFoundInListOne.get(item);
+                timesFoundInListOne.put(item, value + 1);
             } else {
-                timesFoundInListOne.put(listOne.get(i), 1L);
+                timesFoundInListOne.put(item, 1L);
             }
         }
         List<Long> totalNum = new ArrayList<>();
@@ -95,8 +90,8 @@ public class DayOneProblemTest {
         }
 
         long t = 0;
-        for (int i = 0; i < totalNum.size(); i++) {
-            t += totalNum.get(i);
+        for (Long num : totalNum) {
+            t += num;
         }
 
         System.out.println("total is: " + t);
